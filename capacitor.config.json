@@ -1,0 +1,13 @@
+{
+  "appId": "com.infinityearth.app",
+  "appName": "Infinity Earth",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "android": {
+    "allowMixedContent": true,
+    "backgroundColor": "#1E2228"
+  }
+}
