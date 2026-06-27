@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Infinity Earth - Plataforma colaborativa de apuntes científicos" />
+  <meta name="theme-color" content="#1E2228" />
+  <title>Infinity Earth</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ===== LOADER ===== -->
+  <div id="loader">
+    <div class="loader-logo">
+      <span>⚗️</span>
+      <span>Infinity Earth</span>
+    </div>
+    <div class="loader-barra"><div class="loader-progreso"></div></div>
+  </div>
+
+  <!-- ===== HEADER ===== -->
+  <header id="header">
+    <div class="logo">
+      <span class="logo-icono">⚗️</span>
+      <span class="logo-texto">Infinity Earth</span>
+    </div>
+    <nav id="nav-principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#materias">Materias</a>
+      <a href="#apuntes">Apuntes</a>
+      <a href="#comunidad">Comunidad</a>
+      <a href="#" id="nav-ia">✨ IA Tutora</a>
+    </nav>
+    <div class="header-acciones">
+      <button id="btn-buscar">🔍</button>
+      <div id="acciones-invitado">
+        <button id="btn-login">Iniciar sesión</button>
+        <button id="btn-registro">Registrarse</button>
+      </div>
+      <div id="acciones-usuario" class="oculto">
+        <button id="btn-perfil-avatar" aria-expanded="false">
+          <div id="header-avatar-placeholder">👤</div>
+          <img id="header-avatar-img" src="" alt="Avatar" class="oculto" />
+          <span id="header-nombre-usuario"></span>
+          <span class="flecha-dropdown">▾</span>
+        </button>
+        <div id="menu-usuario" class="oculto" role="menu">
+          <div class="menu-usuario-header">
+            <div id="menu-avatar-placeholder">👤</div>
+            <img id="menu-avatar-img" src="" alt="Avatar" class="oculto" />
+            <div>
+              <strong id="menu-nombre-usuario"></strong>
+              <span id="menu-email-usuario"></span>
+            </div>
+          </div>
+          <hr />
+          <button role="menuitem" id="btn-ir-perfil">👤 Mi perfil</button>
+          <button role="menuitem" id="btn-mis-apuntes-menu">📚 Mis apuntes</button>
+          <button role="menuitem" id="btn-guardados">🔖 Guardados</button>
+          <button role="menuitem" id="btn-abrir-ia-menu">✨ IA Tutora</button>
+          <hr />
+          <button role="menuitem" id="btn-cerrar-sesion">🚪 Cerrar sesión</button>
+        </div>
+      </div>
+    </div>
+    <button id="btn-menu-movil">☰</button>
+  </header>
+
+  <!-- ===== BARRA BÚSQUEDA ===== -->
+  <div id="barra-busqueda" class="oculto">
+    <input type="text" id="input-busqueda" placeholder="Buscar apuntes, temas, materias..." />
+    <button id="btn-busqueda-ejecutar">Buscar</button>
+    <button id="btn-busqueda-cerrar">✕</button>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section id="inicio">
+    <div class="hero-contenido">
+      <div class="hero-badge">🌍 Comunidad científica estudiantil</div>
+      <h1>Aprende juntos,<br/><em>crece juntos</em></h1>
+      <p>Sube, descubre y aprende con apuntes de Química, Física y Biología compartidos por tu comunidad. Con IA tutora incluida.</p>
+      <div class="hero-botones">
+        <button id="btn-explorar">Explorar apuntes</button>
+        <button id="btn-subir-hero">Subir mis apuntes</button>
+        <button id="btn-hero-ia">✨ Hablar con IA</button>
+      </div>
+    </div>
+    <div class="hero-estadisticas">
+      <div class="stat">
+        <span class="stat-numero" id="stat-apuntes">0</span>
+        <span class="stat-label">Apuntes</span>
+      </div>
+      <div class="stat">
+        <span class="stat-numero" id="stat-usuarios">0</span>
+        <span class="stat-label">Usuarios</span>
+      </div>
+      <div class="stat">
+        <span class="stat-numero" id="stat-descargas">0</span>
+        <span class="stat-label">Descargas</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MATERIAS ===== -->
+  <section id="materias">
+    <h2>Elige tu materia</h2>
+    <p class="subtitulo-seccion">Navega por área de conocimiento</p>
+    <div id="grid-materias">
+      <div class="tarjeta-materia" id="materia-quimica" data-materia="quimica">
+        <div class="materia-icono">🧪</div>
+        <h3>Química</h3>
+        <p>Orgánica, Inorgánica, Estequiometría y más</p>
+        <ul class="subtemas">
+          <li>Química Orgánica</li>
+          <li>Química Inorgánica</li>
+          <li>Estequiometría</li>
+          <li>Termodinámica Química</li>
+        </ul>
+        <button class="btn-ver-materia">Ver apuntes</button>
+      </div>
+      <div class="tarjeta-materia" id="materia-fisica" data-materia="fisica">
+        <div class="materia-icono">⚡</div>
+        <h3>Física</h3>
+        <p>Mecánica, Electromagnetismo, Óptica y más</p>
+        <ul class="subtemas">
+          <li>Mecánica Clásica</li>
+          <li>Electromagnetismo</li>
+          <li>Termodinámica</li>
+          <li>Óptica y Ondas</li>
+        </ul>
+        <button class="btn-ver-materia">Ver apuntes</button>
+      </div>
+      <div class="tarjeta-materia" id="materia-biologia" data-materia="biologia">
+        <div class="materia-icono">🧬</div>
+        <h3>Biología</h3>
+        <p>Célula, Genética, Ecosistemas y más</p>
+        <ul class="subtemas">
+          <li>Biología Celular</li>
+          <li>Genética y ADN</li>
+          <li>Ecología</li>
+          <li>Anatomía</li>
+        </ul>
+        <button class="btn-ver-materia">Ver apuntes</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== APUNTES ===== -->
+  <section id="apuntes">
+    <div class="apuntes-encabezado">
+      <h2>Apuntes de la comunidad</h2>
+      <button id="btn-subir-apunte">+ Subir apunte</button>
+    </div>
+    <div id="filtros">
+      <select id="filtro-materia">
+        <option value="">Todas las materias</option>
+        <option value="quimica">Química</option>
+        <option value="fisica">Física</option>
+        <option value="biologia">Biología</option>
+      </select>
+      <select id="filtro-tipo">
+        <option value="">Tipo de archivo</option>
+        <option value="pdf">PDF</option>
+        <option value="word">Word</option>
+        <option value="imagen">Imagen</option>
+        <option value="presentacion">Presentación</option>
+      </select>
+      <select id="filtro-nivel">
+        <option value="">Nivel educativo</option>
+        <option value="secundaria">Secundaria</option>
+        <option value="preparatoria">Preparatoria</option>
+        <option value="universidad">Universidad</option>
+      </select>
+      <select id="filtro-orden">
+        <option value="recientes">Más recientes</option>
+        <option value="valorados">Mejor valorados</option>
+        <option value="descargados">Más descargados</option>
+      </select>
+      <button id="btn-limpiar-filtros">✕ Limpiar</button>
+    </div>
+    <div id="grid-apuntes"></div>
+    <div id="paginacion">
+      <button id="btn-pag-anterior">← Anterior</button>
+      <span id="pag-info">Página 1 de 1</span>
+      <button id="btn-pag-siguiente">Siguiente →</button>
+    </div>
+  </section>
+
+  <!-- ===== COMUNIDAD ===== -->
+  <section id="comunidad">
+    <h2>Comunidad</h2>
+    <p class="subtitulo-seccion">Conecta con otros estudiantes</p>
+    <div id="comunidad-grid">
+      <div class="comunidad-bloque" id="bloque-actividad">
+        <h3>🕐 Actividad reciente</h3>
+        <ul id="lista-actividad">
+          <li>Ana subió <strong>Equilibrio químico</strong> · hace 2 h</li>
+          <li>Pedro descargó <strong>Óptica geométrica</strong> · hace 3 h</li>
+          <li>Sofía valoró <strong>Genética mendeliana</strong> · hace 5 h</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer id="footer">
+    <div class="footer-grid">
+      <div class="footer-marca">
+        <span class="logo-icono">⚗️</span>
+        <span class="logo-texto">Infinity Earth</span>
+        <p>Plataforma colaborativa de apuntes científicos para estudiantes.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Materias</h4>
+        <ul>
+          <li><a href="#materia-quimica">Química</a></li>
+          <li><a href="#materia-fisica">Física</a></li>
+          <li><a href="#materia-biologia">Biología</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Plataforma</h4>
+        <ul>
+          <li><a href="#">Acerca de</a></li>
+          <li><a href="#">Términos de uso</a></li>
+          <li><a href="#">Privacidad</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Cuenta</h4>
+        <ul>
+          <li><a href="#" id="footer-login">Iniciar sesión</a></li>
+          <li><a href="#" id="footer-registro">Registrarse</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-inferior">
+      <p>© 2026 Infinity Earth · Hecho para estudiantes, por estudiantes</p>
+    </div>
+  </footer>
+
+  <!-- ===== MODAL: LOGIN ===== -->
+  <div id="modal-login" class="modal oculto" role="dialog" aria-modal="true">
+    <div class="modal-contenido modal-auth">
+      <div class="modal-encabezado">
+        <h3>Iniciar sesión</h3>
+        <button id="btn-cerrar-login">✕</button>
+      </div>
+      <div class="modal-cuerpo">
+        <div class="auth-logo"><span>⚗️</span><span>Infinity Earth</span></div>
+        <div class="campo">
+          <label for="login-email">Correo electrónico</label>
+          <input type="email" id="login-email" placeholder="tucorreo@ejemplo.com" />
+        </div>
+        <div class="campo">
+          <label for="login-password">Contraseña</label>
+          <div class="input-con-icono">
+            <input type="password" id="login-password" placeholder="Tu contraseña" />
+            <button class="btn-toggle-password" data-target="login-password">👁</button>
+          </div>
+        </div>
+        <div class="campo-inline">
+          <label><input type="checkbox" id="login-recordar" /> Recordarme</label>
+          <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+        <div id="login-error" class="mensaje-error oculto"></div>
+      </div>
+      <div class="modal-pie">
+        <button id="btn-confirmar-login">Entrar</button>
+        <p class="auth-cambiar">¿No tienes cuenta? <button id="btn-ir-registro" class="btn-link">Regístrate aquí</button></p>
+      </div>
+    </div>
+    <div class="modal-fondo" id="login-fondo"></div>
+  </div>
+
+  <!-- ===== MODAL: REGISTRO ===== -->
+  <div id="modal-registro" class="modal oculto" role="dialog" aria-modal="true">
+    <div class="modal-contenido modal-auth">
+      <div class="modal-encabezado">
+        <h3>Crear cuenta</h3>
+        <button id="btn-cerrar-registro">✕</button>
+      </div>
+      <div class="modal-cuerpo">
+        <div class="auth-logo"><span>⚗️</span><span>Infinity Earth</span></div>
+        <div class="campo">
+          <label for="reg-nombre">Nombre completo</label>
+          <input type="text" id="reg-nombre" placeholder="Tu nombre" />
+        </div>
+        <div class="campo">
+          <label for="reg-email">Correo electrónico</label>
+          <input type="email" id="reg-email" placeholder="tucorreo@ejemplo.com" />
+        </div>
+        <div class="campo">
+          <label for="reg-password">Contraseña</label>
+          <div class="input-con-icono">
+            <input type="password" id="reg-password" placeholder="Mínimo 8 caracteres" />
+            <button class="btn-toggle-password" data-target="reg-password">👁</button>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="reg-password2">Confirmar contraseña</label>
+          <div class="input-con-icono">
+            <input type="password" id="reg-password2" placeholder="Repite tu contraseña" />
+            <button class="btn-toggle-password" data-target="reg-password2">👁</button>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="reg-nivel">Nivel educativo</label>
+          <select id="reg-nivel">
+            <option value="">Selecciona tu nivel</option>
+            <option value="secundaria">Secundaria</option>
+            <option value="preparatoria">Preparatoria</option>
+            <option value="universidad">Universidad</option>
+            <option value="docente">Docente</option>
+          </select>
+        </div>
+        <div class="campo-inline">
+          <label><input type="checkbox" id="reg-terminos" /> Acepto los <a href="#">términos y condiciones</a></label>
+        </div>
+        <div id="registro-error" class="mensaje-error oculto"></div>
+      </div>
+      <div class="modal-pie">
+        <button id="btn-confirmar-registro">Crear cuenta</button>
+        <p class="auth-cambiar">¿Ya tienes cuenta? <button id="btn-ir-login" class="btn-link">Inicia sesión</button></p>
+      </div>
+    </div>
+    <div class="modal-fondo" id="registro-fondo"></div>
+  </div>
+
+  <!-- ===== MODAL: PERFIL ===== -->
+  <div id="modal-perfil" class="modal oculto" role="dialog" aria-modal="true">
+    <div class="modal-contenido modal-perfil-contenido">
+      <div class="modal-encabezado">
+        <h3>Mi perfil</h3>
+        <button id="btn-cerrar-perfil">✕</button>
+      </div>
+      <div class="modal-cuerpo">
+        <div class="perfil-avatar-seccion">
+          <div class="perfil-avatar-wrapper">
+            <div id="perfil-avatar-placeholder">👤</div>
+            <img id="perfil-avatar-preview" src="" alt="Foto de perfil" class="oculto" />
+            <button id="btn-cambiar-avatar">📷</button>
+          </div>
+          <input type="file" id="input-avatar" accept="image/*" class="oculto" />
+          <p class="perfil-avatar-hint">JPG o PNG · Máx. 2 MB</p>
+        </div>
+        <fieldset class="perfil-seccion">
+          <legend>Datos personales</legend>
+          <div class="campo"><label>Nombre completo</label><input type="text" id="perfil-nombre" placeholder="Tu nombre" /></div>
+          <div class="campo"><label>Nombre de usuario</label>
+            <div class="input-con-prefijo"><span class="input-prefijo">@</span><input type="text" id="perfil-usuario" placeholder="nombre_usuario" /></div>
+          </div>
+          <div class="campo"><label>Correo electrónico</label><input type="email" id="perfil-email" /></div>
+          <div class="campo"><label>Biografía</label><textarea id="perfil-bio" rows="3" placeholder="Cuéntanos algo sobre ti..."></textarea></div>
+          <div class="campo"><label>Nivel educativo</label>
+            <select id="perfil-nivel">
+              <option value="">Selecciona tu nivel</option>
+              <option value="secundaria">Secundaria</option>
+              <option value="preparatoria">Preparatoria</option>
+              <option value="universidad">Universidad</option>
+              <option value="docente">Docente</option>
+            </select>
+          </div>
+          <div class="campo"><label>Institución</label><input type="text" id="perfil-institucion" placeholder="Tu escuela o universidad" /></div>
+        </fieldset>
+        <fieldset class="perfil-seccion">
+          <legend>Materias de interés</legend>
+          <div class="perfil-materias-checks">
+            <label><input type="checkbox" id="interes-quimica" value="quimica" /> 🧪 Química</label>
+            <label><input type="checkbox" id="interes-fisica" value="fisica" /> ⚡ Física</label>
+            <label><input type="checkbox" id="interes-biologia" value="biologia" /> 🧬 Biología</label>
+          </div>
+        </fieldset>
+        <fieldset class="perfil-seccion">
+          <legend>Cambiar contraseña</legend>
+          <div class="campo"><label>Contraseña actual</label>
+            <div class="input-con-icono"><input type="password" id="perfil-pass-actual" placeholder="Tu contraseña actual" /><button class="btn-toggle-password" data-target="perfil-pass-actual">👁</button></div>
+          </div>
+          <div class="campo"><label>Nueva contraseña</label>
+            <div class="input-con-icono"><input type="password" id="perfil-pass-nueva" placeholder="Mínimo 8 caracteres" /><button class="btn-toggle-password" data-target="perfil-pass-nueva">👁</button></div>
+          </div>
+          <div class="campo"><label>Confirmar nueva contraseña</label>
+            <div class="input-con-icono"><input type="password" id="perfil-pass-confirmar" placeholder="Repite la nueva contraseña" /><button class="btn-toggle-password" data-target="perfil-pass-confirmar">👁</button></div>
+          </div>
+        </fieldset>
+        <div class="perfil-stats">
+          <div class="perfil-stat"><span class="perfil-stat-num" id="stat-mis-apuntes">0</span><span class="perfil-stat-label">Apuntes subidos</span></div>
+          <div class="perfil-stat"><span class="perfil-stat-num" id="stat-mis-descargas">0</span><span class="perfil-stat-label">Descargas totales</span></div>
+          <div class="perfil-stat"><span class="perfil-stat-num" id="stat-mis-guardados">0</span><span class="perfil-stat-label">Guardados</span></div>
+        </div>
+        <div id="perfil-error" class="mensaje-error oculto"></div>
+        <div id="perfil-exito" class="mensaje-exito oculto"></div>
+      </div>
+      <div class="modal-pie">
+        <button id="btn-cancelar-perfil">Cancelar</button>
+        <button id="btn-guardar-perfil">Guardar cambios</button>
+      </div>
+    </div>
+    <div class="modal-fondo" id="perfil-fondo"></div>
+  </div>
+
+  <!-- ===== MODAL: SUBIR APUNTE ===== -->
+  <div id="modal-subir" class="modal oculto" role="dialog" aria-modal="true">
+    <div class="modal-contenido">
+      <div class="modal-encabezado">
+        <h3>Subir nuevo apunte</h3>
+        <button id="btn-cerrar-modal">✕</button>
+      </div>
+      <div class="modal-cuerpo">
+        <div class="campo"><label>Título del apunte</label><input type="text" id="apunte-titulo-input" placeholder="Ej: Reacciones de oxidación-reducción" /></div>
+        <div class="campo"><label>Materia</label>
+          <select id="apunte-materia-select">
+            <option value="">Selecciona una materia</option>
+            <option value="quimica">Química</option>
+            <option value="fisica">Física</option>
+            <option value="biologia">Biología</option>
+          </select>
+        </div>
+        <div class="campo"><label>Subtema</label><input type="text" id="apunte-subtema-input" placeholder="Ej: Química Orgánica" /></div>
+        <div class="campo"><label>Nivel educativo</label>
+          <select id="apunte-nivel-select">
+            <option value="">Selecciona el nivel</option>
+            <option value="secundaria">Secundaria</option>
+            <option value="preparatoria">Preparatoria</option>
+            <option value="universidad">Universidad</option>
+          </select>
+        </div>
+        <div class="campo"><label>Descripción</label><textarea id="apunte-descripcion-input" rows="3" placeholder="Describe brevemente el contenido..."></textarea></div>
+        <div class="campo"><label>Etiquetas (separadas por coma)</label><input type="text" id="apunte-etiquetas-input" placeholder="Ej: ácidos, bases, pH" /></div>
+        <div class="campo">
+          <label>Archivo</label>
+          <div id="zona-carga" role="button" tabindex="0">
+            <span id="zona-carga-texto">📂 Arrastra tu archivo aquí o haz clic para seleccionar</span>
+            <span id="zona-carga-formatos">PDF, Word, Imagen, Presentación · Máx. 20 MB</span>
+            <input type="file" id="input-archivo" accept=".pdf,.doc,.docx,.ppt,.pptx,.jpg,.png" />
+          </div>
+          <div id="archivo-seleccionado" class="oculto">
+            <span id="nombre-archivo"></span>
+            <button id="btn-quitar-archivo">✕</button>
+          </div>
+          <div id="progreso-subida" class="oculto">
+            <div class="progreso-barra"><div class="progreso-relleno" id="progreso-relleno"></div></div>
+            <span id="progreso-texto">Subiendo... 0%</span>
+          </div>
+        </div>
+      </div>
+      <div class="modal-pie">
+        <button id="btn-cancelar-subida">Cancelar</button>
+        <button id="btn-confirmar-subida">Publicar apunte</button>
+      </div>
+    </div>
+    <div class="modal-fondo" id="modal-fondo"></div>
+  </div>
+
+  <!-- ===== MODAL: VISTA PREVIA ===== -->
+  <div id="modal-preview" class="modal oculto" role="dialog" aria-modal="true">
+    <div class="modal-contenido modal-contenido-grande">
+      <div class="modal-encabezado">
+        <h3 id="preview-titulo">Vista previa</h3>
+        <button id="btn-cerrar-preview">✕</button>
+      </div>
+      <div id="preview-area"></div>
+      <div class="modal-pie">
+        <button id="btn-valorar">⭐ Valorar</button>
+        <button id="btn-comentar">💬 Comentar</button>
+        <button id="btn-preguntar-ia">✨ Preguntar a IA</button>
+        <button id="btn-descargar-preview">⬇ Descargar</button>
+      </div>
+    </div>
+    <div class="modal-fondo" id="preview-fondo"></div>
+  </div>
+
+  <!-- ===== IA TUTORA (panel lateral) ===== -->
+  <div id="panel-ia" class="oculto">
+    <div id="panel-ia-header">
+      <div class="ia-titulo">
+        <span class="ia-icono">✨</span>
+        <div>
+          <strong>IA Tutora</strong>
+          <span class="ia-subtitulo">Infinity Earth · Powered by Claude</span>
+        </div>
+      </div>
+      <div class="ia-header-acciones">
+        <button id="btn-limpiar-chat" title="Nueva conversación">🗑</button>
+        <button id="btn-cerrar-ia">✕</button>
+      </div>
+    </div>
+
+    <div id="ia-sugerencias">
+      <p class="ia-sugerencias-titulo">Sugerencias rápidas</p>
+      <div class="ia-chips">
+        <button class="ia-chip" data-msg="Explícame qué es la fotosíntesis de manera sencilla">🌿 Fotosíntesis</button>
+        <button class="ia-chip" data-msg="¿Cuáles son las leyes de Newton y cómo se aplican?">⚡ Leyes de Newton</button>
+        <button class="ia-chip" data-msg="Explícame la diferencia entre ácidos y bases">🧪 Ácidos y bases</button>
+        <button class="ia-chip" data-msg="¿Qué es el ADN y cómo funciona?">🧬 ADN</button>
+        <button class="ia-chip" data-msg="Recomiéndame apuntes de química para preparatoria">📚 Recomendar apuntes</button>
+      </div>
+    </div>
+
+    <div id="ia-mensajes"></div>
+
+    <div id="ia-input-area">
+      <textarea id="ia-input" placeholder="Pregunta sobre química, física, biología o pide recomendaciones de apuntes..." rows="2"></textarea>
+      <button id="btn-enviar-ia">➤</button>
+    </div>
+  </div>
+
+  <!-- Botón flotante IA -->
+  <button id="btn-flotante-ia" title="Abrir IA Tutora">✨</button>
+
+  <!-- Toast de notificaciones -->
+  <div id="toast" class="oculto"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
